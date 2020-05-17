@@ -93,16 +93,18 @@ public class FirstClass {
         class Student {
             private String firstName;
             private String lastName;
-            public Student(String firstName, String lastName) {
+
+            Student(String firstName, String lastName) {
                 this.firstName = firstName;
                 this.lastName = lastName;
             }
+
             public void printFullName() {
-                System.out.println(firstName + " " + lastName);
+                System.out.println(this.firstName + " " + this.lastName);
             }
         }
 
-        Student[] students = new Student[] {
+        Student[] students = new Student[]{
                 new Student("Morgan", "Freeman"),
                 new Student("Brad", "Pitt"),
                 new Student("Kevin", "Spacey"),
@@ -110,8 +112,43 @@ public class FirstClass {
         for (Student s : students) {
             s.printFullName();
         }
+    }
 
+    @Test
+    public void test0011() {
+        class Point {
+            private double clasX;
+            private double clasY;
+
+            Point(double x, double y) {
+                this.clasX = x;
+                this.clasY = y;
             }
+
+            public void print() {
+                System.out.println("(" + clasX + "," + clasY + ")");
+            }
+
+            public void scale(){
+                clasX = clasX/2;
+                clasY = clasY/2;
+            }
+        }
+                Point pointObject = new Point(64, 64);
+                Point pointObject2 = new Point(32,32);
+                for (int i = 0; i < 5; i++) {
+                    pointObject.scale();
+                    pointObject.print();
+                }
+                System.out.println("*****New Object*****");
+                for(int b = 0; b<5; b++){
+                    pointObject2.scale();
+                    pointObject2.print();
+                }
+
+
+
+    }
 }
 
 
