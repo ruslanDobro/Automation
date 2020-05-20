@@ -210,6 +210,7 @@ public class FirstClass {
     private void swap(int[] inputArray, int indexL, int indexR) {
             int temp = inputArray[indexR];
             inputArray[indexR] = inputArray[indexL];
+            inputArray[indexL] = temp;
             }
 
     @Test
@@ -250,6 +251,7 @@ public class FirstClass {
                 result ++;
             }
         }
+        System.out.println("This sentence has " + result + " letters 'l'" );
     }
 }
 
