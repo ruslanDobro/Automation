@@ -1,3 +1,4 @@
+import com.sun.deploy.association.AssociationException;
 import org.testng.annotations.Test;
 
 public class FirstClass {
@@ -149,7 +150,109 @@ public class FirstClass {
 
 
     }
+    // ******Class 3********
+
+
+    @Test
+    public void testPrintEvenNUmbers() {
+        for(int i = 1; i <= 10; i++) {
+            if(i % 2 == 0) {
+                System.out.println(i);
+            }
+            else{
+                System.out.println(i + " this number is not even! ");
+            }
+        }
+    }
+
+    @Test
+    public void testPrintHelloWorld() {
+        for(int i = 1; i <= 10; i++) {
+            if(i % 2 == 0) {
+                System.out.println("Hello World!");
+            }
+
+        }
+    }
+
+    @Test
+    public void testprintOutArray() {
+        int[] input = {1, 4, 9, 9};
+        printingAllMemebersofArray(input);
+    }
+
+    public void printingAllMemebersofArray(int[] arrayParameters){
+            for (int i = 0; i <arrayParameters.length; i++) {
+                System.out.println(arrayParameters[i]);
+
+            }
+        }
+        // Swap two numbers in an array
+        //1. create input array
+        //2. create method that will accept input array
+        //3. new method will take indexes of L and R elements
+        //4. method will swap L and R elements respectively with each other
+        //5. Print out final array with new swapped numbers
+
+
+    @Test
+    public void testSwapNumbers() {
+            int[] inputArray = {1,2,3,4,5,6};
+            int indexL = 0;
+            int indexR =1;
+
+            swap(inputArray, indexL,indexR);
+            printingAllMemebersofArray(inputArray);
+
+
+    }
+
+    private void swap(int[] inputArray, int indexL, int indexR) {
+            int temp = inputArray[indexR];
+            inputArray[indexR] = inputArray[indexL];
+            }
+
+    @Test
+    public void testSwapException() {
+        int[] inputArray = {1,2,3,4,5,6};
+        int indexL = 1;
+        int indexR =5;
+        checkInputes(inputArray,indexL,indexR);
+        swap(inputArray, indexL,indexR);
+        printingAllMemebersofArray(inputArray);
+    }
+    //TODO: add checks for input array and other cases that can break the code
+    private void checkInputes(int[] inputArray, int indexL, int indexR) {
+        if(indexL >= 0 && indexL < inputArray.length && indexR >= 0 && indexR < inputArray.length){
+            System.out.println("Correct input");
+        } else {
+            throw new AssertionError("Please enter correct number for the array element");
+        }
+
+    }
+    //Count letter l in this sentance
+    //1. Create a string "Hello World"
+    //2. create an array that will have all letters of the string
+    //3. create method that will count letter l
+    //4.print out the final result of how many letters l in the string
+    //TODO break it down into sub-steps (external method), 'letter' should be a parameter as well
+    @Test
+    public void testCountLetters() {
+        String letters = "HelloL5 World";
+        counter(letters);
+    }
+
+    private void counter(String sentence) {
+        int result = 0;
+        for(char eachLetter : sentence.toCharArray()) {
+            if(eachLetter== 'l'){
+                System.out.println(eachLetter);
+                result ++;
+            }
+        }
+    }
 }
+
 
 
 
