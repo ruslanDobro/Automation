@@ -17,7 +17,7 @@ import static java.lang.Thread.sleep;
 //TODO Create a different scenarios
 public class WindowsHandlesTest {
     private static final String WINDOW_MAIN_PAGE = "https://the-internet.herokuapp.com/windows";
-    WebDriver driver;
+    private WebDriver driver;
     private String originalWindowHandle;
     private String newWindowHandle;
     private By expectedElement = By.linkText("Click Here");
