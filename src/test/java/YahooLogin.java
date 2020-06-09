@@ -40,29 +40,19 @@ public class YahooLogin {
         openMailLoginPage();
         enterUserName();
         enterPassword();
-        verifyLoggedInToInbox();
-
-    }
-
-    private void verifyLoggedInToInbox() {
-        /*WebElement actualInbox = driver.findElement(By.id("Inbox"));
-        String expectedInbox = "Inbox";
-        Assert.assertEquals(actualInbox,expectedInbox);*/
-
     }
 
     private void enterPassword() {
         textInput =  driver.findElement(By.id("login-passwd"));
-        textInput.sendKeys("My password");
+        textInput.sendKeys("Superman456");
         driver.findElement(By.id("login-signin")).click();
 
     }
 
     private void enterUserName() {
         WebDriverWait waiter = new WebDriverWait(driver,5);
-        waiter.until(ExpectedConditions.elementToBeClickable(By.id("login-signin")));
         textInput =  driver.findElement(By.id("login-username"));
-        textInput.sendKeys("my login");
+        textInput.sendKeys("ruslan456");
         driver.findElement(By.id("login-signin")).click();
     }
 
