@@ -44,7 +44,7 @@ public class YahooLogin {
 
     private void enterPassword() {
         textInput =  driver.findElement(By.id("login-passwd"));
-        textInput.sendKeys("Superman456");
+        textInput.sendKeys("my password");
         driver.findElement(By.id("login-signin")).click();
 
     }
@@ -52,7 +52,7 @@ public class YahooLogin {
     private void enterUserName() {
         WebDriverWait waiter = new WebDriverWait(driver,5);
         textInput =  driver.findElement(By.id("login-username"));
-        textInput.sendKeys("ruslan456");
+        textInput.sendKeys("my username");
         driver.findElement(By.id("login-signin")).click();
     }
 
