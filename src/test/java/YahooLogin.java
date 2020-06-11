@@ -9,11 +9,10 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
-public class YahooLogin {
-    private static final String YAHOO_MAIL_LOGINPAGE_URL = "https://login.yahoo.com/?.src=ym&.lang=en-US&.intl=us&.done=https%3A%2F%2Fmail.yahoo.com%2Fd";
-    private WebDriver driver;
-    private  WebElement textInput;
 
+
+public class YahooLogin extends TestBase {
+    private static final String YAHOO_MAIL_LOGINPAGE_URL = "https://login.yahoo.com/?.src=ym&.lang=en-US&.intl=us&.done=https%3A%2F%2Fmail.yahoo.com%2Fd";
 
     @BeforeSuite
     public void testSuiteSetup(){
@@ -22,9 +21,9 @@ public class YahooLogin {
 
     }
     @AfterSuite
-//    public void tearDown(){
-//        driver.quit();
-//    }
+    public void tearDown(){
+        driver.quit();
+    }
 //    Open yahoo mail page
 //    Locate user name field
 //    Enter Valid user id
@@ -32,7 +31,7 @@ public class YahooLogin {
 //    Locate password field
 //    Enter valid user password
 //    Click Next Button
-//    Verify that user was logged in by checking for Inbox on the page
+//    Verify that user was logged in by checking Inbox on the page
 
 
     @Test
@@ -40,20 +39,58 @@ public class YahooLogin {
         openMailLoginPage();
         enterUserName();
         enterPassword();
+        verifyLoggedInToInbox();
+    }
+/*
+    Valid login/Invalid Password
+    Open yahoo mail page
+    Locate user name field
+    Enter Valid user id
+    Click Next button
+    Locate password field
+    Enter invalid user password
+    Click Next Button
+    Verify that user was not logged in with an error message on the page
+*/
+
+    @Test
+    public void testInValidPassword() {
+        openMailLoginPage();
+        enterUserName();
+        enterInvalidPassword();
+        verifyErrorMessage();
+    }
+
+    private void verifyErrorMessage() {
+        String actualErrorMessage = driver.findElement(By.xpath("//*[contains(@class,'error') and @role='alert']")).getText();
+        String expectedErrorMessage = "Invalid password. Please try again";
+        Assert.assertEquals(actualErrorMessage,expectedErrorMessage);
+    }
+
+    private void enterInvalidPassword() {
+        driver.findElement(By.xpath("//*[@class='password']")).sendKeys("Iamnumber1tester");
+        driver.findElement(By.xpath("//button[@type='submit' and @value='Next']")).click();
+
+    }
+
+    private void verifyLoggedInToInbox() {
+        String actualInbox = waitForElement(By.xpath("//span[contains(@data-test-folder-name,'Inbox')]")).getText();
+        String expectedInbox = "Inbox";
+        Assert.assertEquals(actualInbox,expectedInbox);
+
+
     }
 
     private void enterPassword() {
-        textInput =  driver.findElement(By.id("login-passwd"));
-        textInput.sendKeys("my password");
+        driver.findElement(By.id("login-passwd")).sendKeys("Iamnumber1tester");
         driver.findElement(By.id("login-signin")).click();
 
     }
 
     private void enterUserName() {
-        WebDriverWait waiter = new WebDriverWait(driver,5);
-        textInput =  driver.findElement(By.id("login-username"));
-        textInput.sendKeys("my username");
+        waitForElement(By.id("login-username")).sendKeys("ruslan123");
         driver.findElement(By.id("login-signin")).click();
+
     }
 
     private void openMailLoginPage() {
